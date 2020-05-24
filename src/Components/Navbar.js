@@ -22,9 +22,9 @@ const Navbar = ({
                 className="navbar navbar-expand-lg navbar-light"
                 style={{backgroundColor:`${currentTheme.backgroundColor}`}}
             >
-            <img src="https://i.ibb.co/9txjR9D/coronaviruss.png" width="40" height="40" className="d-inline-block align-top"/>
+            <img src="https://i.ibb.co/w7rc99t/coronavirus.png" width="40" height="40" className="d-inline-block align-top"/>
             &nbsp;&nbsp;
-            <Link className="navbar-brand" style={{color: `${currentTheme.textColor}`}} href="/">
+            <Link className="navbar-brand" style={{color: `${currentTheme.textColor}`}} to="/">
                     Covid-19 Tracker
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,16 +33,16 @@ const Navbar = ({
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul className="navbar-nav mt-1">
                 <li className={home}>
-                    <Link className="nav-link" style={{color: `${currentTheme.textColor}`}} href="/">Home <span className="sr-only">(current)</span></Link>
+                    <Link className="nav-link" style={{color: `${currentTheme.textColor}`}} to="/">Home</Link>
                 </li>
                 <li className={country}>
                     <Link className="nav-link" style={{color: `${currentTheme.textColor}`}} to="/countrywisedata">Country Wise Data</Link>
                 </li>
                 {/* <li className={about}>
-                    <a className="nav-link" style={{color: `${currentTheme.textColor}`}} href="/about">About</a>
+                    <Link className="nav-link" style={{color: `${currentTheme.textColor}`}} to="/about">About</Link>
                 </li> */}
                 <li className="nav-item">
-                    <Link className="nav-link" style={{color: `${currentTheme.textColor}`}} href="https://github.com/AnkitAnurag" target="_blank">GitHub Source</Link>
+                    <Link className="nav-link" style={{color: `${currentTheme.textColor}`}} to="https://github.com/AnkitAnurag" target="_blank">GitHub Source</Link>
                 </li>
                 <li className="nav-item">
                     <button
