@@ -104,11 +104,11 @@ const Card = ({
                 </div>
                 
                 <div className="col-md-3 mx-auto mt-5">
-                    <div className="card text-center" style={{backgroundColor: `${currentTheme.cardBody}`}}>
+                    <div className="card text-center" style={{backgroundColor: `${currentTheme.cardBody}`,height: "100%" }}>
                         <div className="card-header">
                             Covid 19 Tracker Chart
                         </div>
-                        <div style={{height: "391px" }} className="card-body">
+                        <div className="card-body">
                             <h5 className="card-title">{chartTitle}</h5>
                             <div className="mt-2 mx-auto" style={{ width: "120px", height: "100px" }}>
                                 <CircularProgressbar
