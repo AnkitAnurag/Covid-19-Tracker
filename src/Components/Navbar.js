@@ -42,7 +42,7 @@ const Navbar = ({
                     <Link className="nav-link" style={{color: `${currentTheme.textColor}`}} to="/about">About</Link>
                 </li> */}
                 <li className="nav-item">
-                    <a className="nav-link" style={{color: `${currentTheme.textColor}`}} href="https://github.com/AnkitAnurag" target="_blank">GitHub Source</a>
+                    <a className="nav-link" style={{color: `${currentTheme.textColor}`}} href="https://github.com/AnkitAnurag/Covid-19-Tracker" target="_blank">GitHub Source</a>
                 </li>
                 <li className="nav-item">
                     <button
