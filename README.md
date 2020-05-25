@@ -4,8 +4,8 @@ This website keeps tracks of the records of coronavirus patients, total cases, d
 
 # Covid-19 Global Data
 
-https://user-images.githubusercontent.com/50586418/82828694-49b15a00-9ecf-11ea-8e04-6dfbb9877cff.png
+![Screenshot (45)](https://user-images.githubusercontent.com/50586418/82828694-49b15a00-9ecf-11ea-8e04-6dfbb9877cff.png)
 
 # Covid-19 Country Wise Data
 
-https://user-images.githubusercontent.com/50586418/82828744-5fbf1a80-9ecf-11ea-9961-78c75fb6bfa4.png
+![Screenshot (46)](https://user-images.githubusercontent.com/50586418/82828744-5fbf1a80-9ecf-11ea-9961-78c75fb6bfa4.png)
