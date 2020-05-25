@@ -104,7 +104,7 @@ const Card = ({
                 </div>
                 
                 <div className="col-md-3 mx-auto mt-5">
-                    <div className="card text-center" style={{backgroundColor: `${currentTheme.cardBody}`,height: "100%" }}>
+                    <div className="card text-center" style={{backgroundColor: `${currentTheme.cardBody}`,height: "100%",minHeight:"500px" }}>
                         <div className="card-header">
                             Covid 19 Tracker Chart
                         </div>
