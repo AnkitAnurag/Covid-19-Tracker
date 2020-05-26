@@ -1,26 +1,26 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Helmet } from 'react-helmet'
-import Card from "./SummaryCard";
-import AppTheme from "../Colors";
-import ThemeContext from "../Context/ThemeContext";
-
+import React, { useState, useEffect, useContext } from 'react';
+import { Helmet } from 'react-helmet';
+import Card from './SummaryCard';
+import Top10Countries from './Top10Countries';
+import AppTheme from '../Colors';
+import ThemeContext from '../Context/ThemeContext';
+import Footer from './Footer';
 const FetchGlobalStats = () => {
-
   const theme = useContext(ThemeContext)[0];
   const currentTheme = AppTheme[theme];
 
-  const [ stats, setStats ] = useState([]);
-  const [ loading, setLoading ] = useState(true);
+  const [stats, setStats] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const requestOptions = {
     method: 'GET',
-    redirect: 'follow'
+    redirect: 'follow',
   };
-  
+
   async function fetchData() {
-    fetch("https://api.covid19api.com/summary", requestOptions)
-      .then(response => response.json())
-      .then(result => {
+    fetch('https://api.covid19api.com/summary', requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
         setStats(result);
         setLoading(false);
       });
@@ -32,32 +32,59 @@ const FetchGlobalStats = () => {
 
   if (loading) {
     return (
-      <div style={{color: `${currentTheme.textColor}`}}>
-        <Helmet bodyAttributes={{style: `background-color : ${currentTheme.backgroundColor}`}}/>
-        <div className="d-flex justify-content-center" style={{marginTop:"250px"}}>
-          <h1><strong>Loading</strong>&nbsp;&nbsp;</h1>
-          <div className="spinner-border" role="status" style={{width:"40px",height:"40px"}}>
-          </div>
+      <div style={{ color: `${currentTheme.textColor}` }}>
+        <Helmet
+          bodyAttributes={{
+            style: `background-color : ${currentTheme.backgroundColor}`,
+          }}
+        />
+        <div
+          className='d-flex justify-content-center'
+          style={{ marginTop: '250px' }}
+        >
+          <h1>
+            <strong>Loading</strong>&nbsp;&nbsp;
+          </h1>
+          <div
+            className='spinner-border'
+            role='status'
+            style={{ width: '40px', height: '40px' }}
+          ></div>
         </div>
-        <p className="font-weight-light d-flex justify-content-center">If it takes too long please reload the page.</p>
+        <p className='font-weight-light d-flex justify-content-center'>
+          If it takes too long please reload the page.
+        </p>
       </div>
     );
-  }
-
-  else {
-    const fatality = (stats.Global.TotalDeaths/stats.Global.TotalConfirmed)*100;
+  } else {
+    const fatality =
+      (stats.Global.TotalDeaths / stats.Global.TotalConfirmed) * 100;
     const fatalityPercent = fatality.toFixed(2);
-    const recovery = (stats.Global.TotalRecovered/stats.Global.TotalConfirmed)*100;
+    const recovery =
+      (stats.Global.TotalRecovered / stats.Global.TotalConfirmed) * 100;
     const recoveryPercent = recovery.toFixed(2);
     const str = stats.Date;
     var date = str.substring(0, 10);
     var time = str.substring(11, 19);
-    var activeCases = (stats.Global.TotalConfirmed-stats.Global.TotalDeaths-stats.Global.TotalRecovered);
-    return(
+    var activeCases =
+      stats.Global.TotalConfirmed -
+      stats.Global.TotalDeaths -
+      stats.Global.TotalRecovered;
+    const countries = stats.Countries;
+    //Sorting the JSON Array with Highest TotalConfirmed to Lowest TotalConfirmed
+    countries.sort(function (a, b) {
+      return b.TotalConfirmed - a.TotalConfirmed;
+    });
+    console.log(countries);
+    return (
       <div>
-        <Helmet bodyAttributes={{style: `background-color : ${currentTheme.backgroundColor}`}}/>
+        <Helmet
+          bodyAttributes={{
+            style: `background-color : ${currentTheme.backgroundColor}`,
+          }}
+        />
         <Card
-          title="Global Coronavirus Stats Summary"
+          title='Global Coronavirus Stats Summary'
           active={activeCases}
           newconf={stats.Global.NewConfirmed}
           totalconf={stats.Global.TotalConfirmed}
@@ -69,9 +96,16 @@ const FetchGlobalStats = () => {
           recoveryRate={recoveryPercent}
           date={date}
           time={time}
-          chartTitle="Global Coronavirus Stats Chart"
-          button="Check Country Wise Data"
-          link="/countrywisedata" />
+          chartTitle='Global Coronavirus Stats Chart'
+          button='Check Country Wise Data'
+          link='/countrywisedata'
+        />
+        <div>
+          <Top10Countries country={countries} />
+        </div>
+        <div>
+          <Footer />
+        </div>
       </div>
     );
   }
