@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Helmet } from 'react-helmet';
+import { Dropdown, DropdownMenu, DropdownToggle, DropdownItem } from 'reactstrap';
 import Card from './SummaryCard';
 import AppTheme from '../Colors';
 import ThemeContext from '../Context/ThemeContext';
 import Footer from './Footer';
+import ReactCountryFlag from 'react-country-flag';
 
 const FetchCountryStats = () => {
   const theme = useContext(ThemeContext)[0];
@@ -12,6 +14,9 @@ const FetchCountryStats = () => {
   const [stats, setStats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [country, setCountry] = useState(0);
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggle = () => setDropdownOpen(prevState => !prevState);
 
   const requestOptions = {
     method: 'GET',
@@ -65,10 +70,13 @@ const FetchCountryStats = () => {
     const cname = stats.Countries;
     const ctitle = cname[country].Country;
     const countries = stats.Countries;
+    var counter = 0;
     let countryNames = [];
     for (var i = 0; i < countries.length; i++) {
       countryNames.push(countries[i].Country);
     }
+    // console.log(countries[0].CountryCode);
+
     const fatality =
       (cname[country].TotalDeaths / cname[country].TotalConfirmed) * 100;
     const fatalityPercent = fatality.toFixed(2);
@@ -90,22 +98,52 @@ const FetchCountryStats = () => {
         >
           <form className='form-inline'>
             <div className='input-group-prepend'>
-              <label className='input-group-text'>Select Country</label>
+              <label className='input-group-text'>Options</label>
             </div>
-            <select
+            {/* <select
               onChange={countrySelected}
               className='custom-select'
               id='inputGroupSelect01'
-            >
-              {/* <option>Choose Country to Display Data...</option> */}
-              {countryNames.map((name, index) => {
+            > */}
+              {/* {countryNames.map((name, index) => {
                 return (
                   <option value={index} key={index}>
                     {name}
                   </option>
                 );
-              })}
-            </select>
+              })} */}
+
+              {/* {countries.map((name, index) => {
+                return (
+                  <option value={index} key={index}>
+                    {name.Country}
+                  </option>
+                )
+              })} */}
+
+              <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+                  <DropdownToggle caret style={{width:"287px"}}>
+                      Select Country To Display Data
+                  </DropdownToggle>
+                  <DropdownMenu style={{overflowY: 'scroll', maxHeight: "600px"}}>
+                        {countries.map((name, index) => {
+                          return (
+                              <DropdownItem key={index} value={index} onClick={countrySelected}>
+                                  <ReactCountryFlag
+                                      countryCode={name.CountryCode}
+                                      svg
+                                      cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
+                                      cdnSuffix='svg'
+                                  />
+                                  &nbsp;&nbsp;
+                                  {name.Country}
+                              </DropdownItem>
+                          )
+                        })}
+                  </DropdownMenu>
+              </Dropdown>
+
+            {/* </select> */}
           </form>
         </div>
         <Helmet

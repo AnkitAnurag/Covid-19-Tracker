@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Container } from 'reactstrap';
 import { Link } from "react-router-dom";
 import CountUp from 'react-countup';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
@@ -28,9 +29,10 @@ const Card = ({
         const currentTheme = AppTheme[theme];
 
         return(
+            <Container fluid>
             <div className="row">
-                <div className="col-md-8 mx-auto mt-5">
-                    <div className="card text-center" style={{backgroundColor: `${currentTheme.cardBody}`}}>
+                <div className="col-md-8 ml-auto mt-5">
+                    <div className="card text-center" style={{backgroundColor: `${currentTheme.cardBody}`, height:"100%"}}>
                         <div className="card-header">
                             Covid 19 Tracker
                         </div>
@@ -103,7 +105,7 @@ const Card = ({
                     </div>
                 </div>
                 
-                <div className="col-md-3 mx-auto mt-5">
+                <div className="col-md-3 mr-auto mt-5">
                     <div className="card text-center" style={{backgroundColor: `${currentTheme.cardBody}`,height: "100%",minHeight:"500px" }}>
                         <div className="card-header">
                             Covid 19 Tracker Chart
@@ -141,6 +143,7 @@ const Card = ({
                     </div>
                 </div>
             </div>
+            </Container>
         );
     };
 

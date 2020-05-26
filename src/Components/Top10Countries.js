@@ -3,7 +3,6 @@ import { Table, Container } from 'reactstrap';
 import ThemeContext from '../Context/ThemeContext';
 import AppTheme from '../Colors';
 import ReactCountryFlag from 'react-country-flag';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
 const Top10Countries = ({ country }) => {
   const theme = useContext(ThemeContext)[0];
@@ -11,10 +10,11 @@ const Top10Countries = ({ country }) => {
   const str = country[1].Date;
   var date = str.substring(0, 10);
   var time = str.substring(11, 19);
+  var count=1;
   return (
     <Container fluid>
       <div className='row'>
-        <div className='col-lg-12 mx-auto mt-5'>
+        <div className='col-lg-11 mx-auto mt-5'>
           <div
             className='card text-center'
             style={{ backgroundColor: `${currentTheme.cardBody}` }}
@@ -22,10 +22,11 @@ const Top10Countries = ({ country }) => {
             <div className='card-header'>
               <strong>Top 10 Covid-19 affected countries</strong>
             </div>
-            <div className='card-body'>
+            <div className='card-body table-responsive' style={{overflowX:"auto"}}>
               <Table bordered hover>
                 <thead>
                   <tr>
+                    <th>#</th>
                     <th>Country</th>
                     <th style={{ color: '#2475B0' }}>Total Confirmed</th>
                     <th style={{ color: '#2475B0' }}>New Confirmed</th>
@@ -38,7 +39,8 @@ const Top10Countries = ({ country }) => {
                 <tbody>
                   {country.slice(0, 10).map((country) => (
                     <tr>
-                      <td>
+                      <td>{count++}</td>
+                      <td style={{textAlign:"left"}}>
                         <ReactCountryFlag
                           countryCode={country.CountryCode}
                           svg

@@ -5,6 +5,7 @@ import Top10Countries from './Top10Countries';
 import AppTheme from '../Colors';
 import ThemeContext from '../Context/ThemeContext';
 import Footer from './Footer';
+
 const FetchGlobalStats = () => {
   const theme = useContext(ThemeContext)[0];
   const currentTheme = AppTheme[theme];
@@ -75,7 +76,7 @@ const FetchGlobalStats = () => {
     countries.sort(function (a, b) {
       return b.TotalConfirmed - a.TotalConfirmed;
     });
-    console.log(countries);
+    // console.log(countries);
     return (
       <div>
         <Helmet

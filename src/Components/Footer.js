@@ -2,9 +2,9 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className='footer'>
+    <footer className='footer mx-auto'>
       <div
-        className='container mt-4 mb-2'
+        className='container mt-4 mb-4'
         style={{ textAlign: 'center', fontSize: '15px' }}
       >
         <span className='text-muted'>
