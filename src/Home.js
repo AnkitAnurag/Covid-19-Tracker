@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import FetchGlobalStats from './Components/FetchAPIGlobal';
 import Navbar from './Components/Navbar';
 import ThemeContext from './Context/ThemeContext';
-import Footer from './Components/Footer';
 
 const Home = () => {
   var theme;

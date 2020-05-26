@@ -70,12 +70,6 @@ const FetchCountryStats = () => {
     const cname = stats.Countries;
     const ctitle = cname[country].Country;
     const countries = stats.Countries;
-    var counter = 0;
-    let countryNames = [];
-    for (var i = 0; i < countries.length; i++) {
-      countryNames.push(countries[i].Country);
-    }
-    // console.log(countries[0].CountryCode);
 
     const fatality =
       (cname[country].TotalDeaths / cname[country].TotalConfirmed) * 100;
@@ -105,13 +99,6 @@ const FetchCountryStats = () => {
               className='custom-select'
               id='inputGroupSelect01'
             > */}
-              {/* {countryNames.map((name, index) => {
-                return (
-                  <option value={index} key={index}>
-                    {name}
-                  </option>
-                );
-              })} */}
 
               {/* {countries.map((name, index) => {
                 return (

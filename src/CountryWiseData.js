@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Navbar from './Components/Navbar';
 import FetchCountryStats from './Components/FetchAPICountry';
 import ThemeContext from './Context/ThemeContext';
-import Footer from './Components/Footer';
 
 const CountryData = () => {
   var theme;
