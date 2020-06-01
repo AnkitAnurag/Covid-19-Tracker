@@ -6,6 +6,7 @@ import AppTheme from "../Colors";
 const Navbar = ({
     home="nav-item",
     country="nav-item",
+    india="nav-item",
     about="nav-item"
     }) => {
         const [themeMode, setThemeMode] = useContext(ThemeContext);
@@ -37,6 +38,9 @@ const Navbar = ({
                 </li>
                 <li className={country}>
                     <Link className="nav-link" style={{color: `${currentTheme.textColor}`}} to="/countrywisedata">Country Wise Data</Link>
+                </li>
+                <li className={india}>
+                    <Link className="nav-link" style={{color: `${currentTheme.textColor}`}} to="/indiastats">India Stats</Link>
                 </li>
                 {/* <li className={about}>
                     <Link className="nav-link" style={{color: `${currentTheme.textColor}`}} to="/about">About</Link>

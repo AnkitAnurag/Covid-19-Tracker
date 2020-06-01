@@ -2,3 +2,29 @@ body {
   background-color: #DAE0E2;
   /* background-color: #2F363F; */
 }
+
+@font-face {
+  font-family: 'archiaregular';
+  src: url('archia-regular-webfont.eot');
+  src: url('archia-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('archia-regular-webfont.woff2') format('woff2'),
+       url('archia-regular-webfont.woff') format('woff'),
+       url('archia-regular-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+td, th, tr, thead, tbody {
+  border-radius: 5px;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 3px 4px;
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    width: 50%;
+    display: inline-block;
+  }
+}

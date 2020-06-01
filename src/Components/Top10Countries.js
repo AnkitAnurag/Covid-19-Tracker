@@ -23,7 +23,7 @@ const Top10Countries = ({ country }) => {
               <strong>Top 10 Covid-19 affected countries</strong>
             </div>
             <div className='card-body table-responsive' style={{overflowX:"auto"}}>
-              <Table bordered hover>
+              <Table bordered striped hover>
                 <thead>
                   <tr>
                     <th>#</th>
