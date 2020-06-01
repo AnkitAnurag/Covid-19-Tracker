@@ -35,28 +35,28 @@ const IndiaCard = ({
                     <h1>India Coronavirus Stats</h1>
                 </div>
                 <div className="col-lg-8 col-md-12 mx-auto mt-5 card-group text-center">
-                    <div className="card mb-3 mx-auto" style={{maxWidth:"12rem", maxHeight:"8rem", borderRadius:"5px" , backgroundColor:"rgba(255,7,58,.12549)", color:"rgba(255, 7, 58, 0.6)"}}>
+                    <div className="card mb-3 mx-auto" id="cards" style={{maxWidth:"12rem", maxHeight:"8rem", borderRadius:"5px" , backgroundColor:"rgba(255,7,58,.12549)", color:"rgba(255, 7, 58, 0.6)"}}>
                         <div className="card-body">
                             <h6 className="font-weight-bold">Confirmed</h6>
                             <h4 className="card-title" style={{color:"rgb(255, 7, 58)", fontWeight:"bold"}}>{confirmed.toLocaleString(navigator.language)}</h4>
                             <h6 className="card-text">[+1000]</h6>
                         </div>
                     </div>
-                    <div className="card mb-3 mx-auto" style={{maxWidth:"12rem", maxHeight:"8rem", borderRadius:"5px", backgroundColor:"rgba(0, 123, 255, 0.063)", color:"rgba(0, 123, 255, 0.6)"}}>
+                    <div className="card mb-3 mx-auto" id="cards" style={{maxWidth:"12rem", maxHeight:"8rem", borderRadius:"5px", backgroundColor:"rgba(0, 123, 255, 0.063)", color:"rgba(0, 123, 255, 0.6)"}}>
                         <div className="card-body">
                             <h6 className="font-weight-bold">Active</h6>
                             <h4 className="card-title" style={{color:"rgb(0, 123, 255)", fontWeight:"bold"}}>{active.toLocaleString(navigator.language)}</h4>
                             <h6 className="card-text">[+500]</h6>
                         </div>
                     </div>
-                    <div className="card mb-3 mx-auto" style={{maxWidth:"12rem", maxHeight:"8rem", borderRadius:"5px", backgroundColor:"rgba(40, 167, 69, 0.125)", color:"rgba(40, 167, 69, 0.6)"}}>
+                    <div className="card mb-3 mx-auto" id="cards" style={{maxWidth:"12rem", maxHeight:"8rem", borderRadius:"5px", backgroundColor:"rgba(40, 167, 69, 0.125)", color:"rgba(40, 167, 69, 0.6)"}}>
                         <div className="card-body">
                             <h6 className="font-weight-bold">Recovered</h6>
                             <h4 className="card-title" style={{color:"rgb(40, 167, 69)", fontWeight:"bold"}}>{recovered.toLocaleString(navigator.language)}</h4>
                             <h6 className="card-text">[+400]</h6>
                         </div>
                     </div>
-                    <div className="card mb-3 mx-auto" style={{maxWidth:"12rem", maxHeight:"8rem", borderRadius:"5px", backgroundColor:"rgba(108, 117, 125, 0.063)", color:"rgba(108, 117, 125, 0.6)"}}>
+                    <div className="card mb-3 mx-auto" id="cards" style={{maxWidth:"12rem", maxHeight:"8rem", borderRadius:"5px", backgroundColor:"rgba(108, 117, 125, 0.063)", color:"rgba(108, 117, 125, 0.6)"}}>
                         <div className="card-body">
                             <h6 className="font-weight-bold">Deceased</h6>
                             <h4 className="card-title" style={{color:"rgb(108, 117, 125)", fontWeight:"bold"}}>{deceased.toLocaleString(navigator.language)}</h4>

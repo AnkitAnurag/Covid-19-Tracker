@@ -23,7 +23,7 @@ table {
 }
 
 @media screen and (max-width: 600px) {
-  .card {
+  #cards {
     width: 50%;
     display: inline-block;
   }
