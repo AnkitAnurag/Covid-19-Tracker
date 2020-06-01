@@ -6,8 +6,8 @@ import ThemeContext from './Context/ThemeContext';
 
 const CountryData = () => {
   var theme;
-  if (localStorage.getItem('isDark') === 'true') theme = 'dark';
-  else theme = 'light';
+  if (localStorage.getItem('isDark') === 'false') theme = 'light';
+  else theme = 'dark';
   const themeHook = useState(theme);
   return (
     <ThemeContext.Provider value={themeHook}>

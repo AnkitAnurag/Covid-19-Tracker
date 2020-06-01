@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 
 const App = () => {
-  localStorage.setItem('isDark', "");
   return(
     <div className="App">
       <h1>Working Properly!!</h1>

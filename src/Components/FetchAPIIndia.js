@@ -11,6 +11,7 @@ const FetchIndiaStats = () => {
   const currentTheme = AppTheme[theme];
 
   const [stats, setStats] = useState([]);
+  const [date, setDate] = useState();
   const [loading, setLoading] = useState(true);
 
 
@@ -21,7 +22,9 @@ const FetchIndiaStats = () => {
     // console.log("Data: ", data.data['unofficial-summary'][0].deaths);
 
     const stats = data.data;
+    const date = data.lastRefreshed;
     setStats(stats);
+    setDate(date);
     setLoading(false);
   };
   
@@ -75,6 +78,7 @@ const FetchIndiaStats = () => {
           recovered={stats['unofficial-summary'][0].recovered}
           deceased={stats['unofficial-summary'][0].deaths}
           states={statesData}
+          lastRefreshed={date}
         />
         <div>
           <Footer />
