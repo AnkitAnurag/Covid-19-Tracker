@@ -11,20 +11,22 @@ const Top10Countries = ({ country }) => {
   var date = str.substring(0, 10);
   var time = str.substring(11, 19);
   var count=1;
+  var toggle;
+
+  if(currentTheme.backgroundColor === "rgb(22, 22, 37)")
+      toggle=true;
+  else
+      toggle=false;
+
   return (
     <Container fluid>
-      <div className='row'>
-        <div className='col-lg-11 mx-auto mt-5'>
-          <div
-            className='card text-center'
-            style={{ backgroundColor: `${currentTheme.cardBody}` }}
-          >
-            <div className='card-header'>
-              <strong>Top 10 Covid-19 affected countries</strong>
+        <div className="row" style={{fontFamily:"archiaregular"}}>
+            <div className="col card-body text-center mx-auto mt-4" style={{color: `${currentTheme.textColor}`}}>
+                <h1>Top 10 Covid-19 affected countries</h1>
             </div>
-            <div className='card-body table-responsive' style={{overflowX:"auto"}}>
-              <Table bordered striped hover>
-                <thead>
+            <div className='card-body table-responsive col-lg-10 text-center mx-auto' style={{overflowX:"auto"}}>
+              <Table borderless size="sm" striped hover dark={toggle} responsive style={{backgroundColor: `${currentTheme.backgroundColor}` ,color: "rgb(108, 117, 125)"}}>
+                <thead style={{backgroundColor:`${currentTheme.tableHeader}`}}>
                   <tr>
                     <th>#</th>
                     <th>Country</th>
@@ -37,8 +39,8 @@ const Top10Countries = ({ country }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {country.slice(0, 10).map((country) => (
-                    <tr>
+                  {country.slice(0, 10).map((country, index) => (
+                    <tr style={{fontWeight:"bold"}} key={index}>
                       <td>{count++}</td>
                       <td style={{textAlign:"left"}}>
                         <ReactCountryFlag
@@ -60,13 +62,9 @@ const Top10Countries = ({ country }) => {
                   ))}
                 </tbody>
               </Table>
+            <h6 style={{color:`${currentTheme.textColor}`, float:"right", fontWeight:"bold"}}>Last Updated: {date} [{time}]</h6>
             </div>
-            <div className='card-footer text-muted'>
-              Last Updated: {date} {time}
-            </div>
-          </div>
         </div>
-      </div>
     </Container>
   );
 };
