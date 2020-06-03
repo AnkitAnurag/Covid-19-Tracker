@@ -22,7 +22,7 @@ const Top10Countries = ({ country }) => {
     <Container fluid>
         <div className="row" style={{fontFamily:"archiaregular"}}>
             <div className="col card-body text-center mx-auto mt-4" style={{color: `${currentTheme.textColor}`}}>
-                <h1>Top 10 Covid-19 affected countries</h1>
+                <h1 style={{fontWeight:"bold"}}>Top 10 Covid-19 affected countries</h1>
             </div>
             <div className='card-body table-responsive col-lg-10 text-center mx-auto' style={{overflowX:"auto"}}>
               <Table borderless size="sm" striped hover dark={toggle} responsive style={{backgroundColor: `${currentTheme.backgroundColor}` ,color: "rgb(108, 117, 125)"}}>
@@ -52,12 +52,12 @@ const Top10Countries = ({ country }) => {
                         &nbsp;&nbsp;
                         {country.Country}
                       </td>
-                      <td>{country.TotalConfirmed}</td>
-                      <td>{country.NewConfirmed}</td>
-                      <td>{country.TotalDeaths}</td>
-                      <td>{country.NewDeaths}</td>
-                      <td>{country.TotalRecovered}</td>
-                      <td>{country.NewRecovered}</td>
+                      <td>{country.TotalConfirmed.toLocaleString(navigator.language)}</td>
+                      <td>{country.NewConfirmed.toLocaleString(navigator.language)}</td>
+                      <td>{country.TotalDeaths.toLocaleString(navigator.language)}</td>
+                      <td>{country.NewDeaths.toLocaleString(navigator.language)}</td>
+                      <td>{country.TotalRecovered.toLocaleString(navigator.language)}</td>
+                      <td>{country.NewRecovered.toLocaleString(navigator.language)}</td>
                     </tr>
                   ))}
                 </tbody>
