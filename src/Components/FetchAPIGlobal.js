@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Helmet } from 'react-helmet';
-import Card from './SummaryCard';
 import Top10Countries from './Top10Countries';
 import AppTheme from '../Colors';
 import ThemeContext from '../Context/ThemeContext';
 import Footer from './Footer';
+import StatsCard from './StatsCards';
 
 const FetchGlobalStats = () => {
   const theme = useContext(ThemeContext)[0];
   const currentTheme = AppTheme[theme];
 
   const [stats, setStats] = useState([]);
+  const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const requestOptions = {
@@ -18,8 +19,9 @@ const FetchGlobalStats = () => {
     redirect: 'follow',
   };
 
+  //Global Data
   async function fetchData() {
-    fetch('https://api.covid19api.com/summary', requestOptions)
+    fetch('https://corona.lmao.ninja/v2/all?yesterday', requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setStats(result);
@@ -27,8 +29,21 @@ const FetchGlobalStats = () => {
       });
   }
 
+  //Countries Data for top 10 countries
+  async function fetchData1() {
+    fetch('https://corona.lmao.ninja/v2/countries?yesterday&sort', requestOptions)
+      .then((resp) => resp.json())
+      .then((data) => {
+        setCountries(data);
+      });
+  }
+
   useEffect(() => {
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    fetchData1();
   }, []);
 
   if (loading) {
@@ -58,25 +73,20 @@ const FetchGlobalStats = () => {
       </div>
     );
   } else {
-    const fatality =
-      (stats.Global.TotalDeaths / stats.Global.TotalConfirmed) * 100;
-    const fatalityPercent = fatality.toFixed(2);
-    const recovery =
-      (stats.Global.TotalRecovered / stats.Global.TotalConfirmed) * 100;
-    const recoveryPercent = recovery.toFixed(2);
-    const str = stats.Date;
-    var date = str.substring(0, 10);
-    var time = str.substring(11, 19);
-    var activeCases =
-      stats.Global.TotalConfirmed -
-      stats.Global.TotalDeaths -
-      stats.Global.TotalRecovered;
-    const countries = stats.Countries;
+    
+    const countryData = countries;
     //Sorting the JSON Array with Highest TotalConfirmed to Lowest TotalConfirmed
-    countries.sort(function (a, b) {
-      return b.TotalConfirmed - a.TotalConfirmed;
+    countryData.sort(function (a, b) {
+      return b.cases - a.cases;
     });
-    // console.log(countries);
+
+    const treated = stats.todayRecovered+stats.todayDeaths;
+    var active;
+    if(stats.todayCases > treated)
+      active="↑"+(stats.todayCases-treated).toLocaleString(navigator.language);
+    else
+      active="↓"+(treated-stats.todayCases).toLocaleString(navigator.language);
+
     return (
       <div>
         <Helmet
@@ -84,25 +94,32 @@ const FetchGlobalStats = () => {
             style: `background-color : ${currentTheme.backgroundColor}`,
           }}
         />
-        <Card
-          title='Global Coronavirus Stats Summary'
-          active={activeCases}
-          newconf={stats.Global.NewConfirmed}
-          totalconf={stats.Global.TotalConfirmed}
-          newdeath={stats.Global.NewDeaths}
-          totaldeath={stats.Global.TotalDeaths}
-          newrecov={stats.Global.NewRecovered}
-          totalrecov={stats.Global.TotalRecovered}
-          fatalityRate={fatalityPercent}
-          recoveryRate={recoveryPercent}
-          date={date}
-          time={time}
-          chartTitle='Global Coronavirus Stats Chart'
-          button='Check Country Wise Data'
-          link='/countrywisedata'
+        <StatsCard
+          title='Global Coronavirus Stats'
+          active={stats.active}
+          newactive={active}
+          newconf={stats.todayCases}
+          totalconf={stats.cases}
+          newdeath={stats.todayDeaths}
+          totaldeath={stats.deaths}
+          newrecov={stats.todayRecovered}
+          totalrecov={stats.recovered}
+          confpermil={stats.casesPerOneMillion}
+          activepercent={((stats.active/stats.cases)*100).toFixed(2)}
+          activep={((stats.active/stats.cases)*100).toFixed(0)}
+          recovrate={((stats.recovered/stats.cases)*100).toFixed(2)}
+          recovp={((stats.recovered/stats.cases)*100).toFixed(0)}
+          mortalityrate={((stats.deaths/stats.cases)*100).toFixed(2)}
+          mortalityp={((stats.deaths/stats.cases)*100).toFixed(0)}
+          countriesaffected={stats.affectedCountries}
+          testspermil={stats.testsPerOneMillion}
+          testspermilp={stats.testsPerOneMillion.toFixed(0)}
+          population={stats.population}
+          tests={stats.tests}
+          disp="none"
         />
         <div>
-          <Top10Countries country={countries} />
+          <Top10Countries country={countryData} />
         </div>
         <div>
           <Footer />

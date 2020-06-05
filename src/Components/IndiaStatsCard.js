@@ -7,11 +7,16 @@ import "../App.css";
 
 const IndiaCard = ({
     confirmed="loading...",
+    todayconf="loading...",
     active="loading...",
+    todayactive="loading...",
     recovered="loading...",
+    todayrecov="loading...",
     deceased="loading...",
+    todaydeceased="loading...",
     states,
-    lastRefreshed
+    lastRefreshed,
+    flag=""
     }) => {
 
         const theme = useContext(ThemeContext)[0];
@@ -36,35 +41,35 @@ const IndiaCard = ({
             />
             <div className="row" style={{fontFamily:"archiaregular"}}>
                 <div className="col card-body text-center mx-auto" style={{color: `${currentTheme.textColor}`}}>
-                    <h1>India Coronavirus Stats</h1>
+                    <h1><img src={flag} alt="" className="mb-2" style={{width:"50px", height:"35px"}}/>&nbsp;India Coronavirus Stats</h1>
                 </div>
                 <div className="col-lg-8 col-md-12 mx-auto mt-5 card-group text-center">
                     <div className="card mb-3 mx-auto" id="cards" style={{maxWidth:"12rem", maxHeight:"8rem", borderRadius:"5px" , backgroundColor:"rgba(255,7,58,.12549)", color:"rgba(255, 7, 58, 0.6)"}}>
                         <div className="card-body">
                             <h6 className="font-weight-bold">Confirmed</h6>
                             <h4 className="card-title" style={{color:"rgb(255, 7, 58)", fontWeight:"bold"}}>{confirmed.toLocaleString(navigator.language)}</h4>
-                            {/* <h6 className="card-text">[+1000]</h6> */}
+                            <p style={{fontWeight:"bold"}} className="card-text">[↑{todayconf.toLocaleString(navigator.language)}]</p>
                         </div>
                     </div>
                     <div className="card mb-3 mx-auto" id="cards" style={{maxWidth:"12rem", maxHeight:"8rem", borderRadius:"5px", backgroundColor:"rgba(0, 123, 255, 0.063)", color:"rgba(0, 123, 255, 0.6)"}}>
                         <div className="card-body">
                             <h6 className="font-weight-bold">Active</h6>
                             <h4 className="card-title" style={{color:"rgb(0, 123, 255)", fontWeight:"bold"}}>{active.toLocaleString(navigator.language)}</h4>
-                            {/* <h6 className="card-text">[+500]</h6> */}
+                            <p style={{fontWeight:"bold"}} className="card-text">[{todayactive.toLocaleString(navigator.language)}]</p>
                         </div>
                     </div>
                     <div className="card mb-3 mx-auto" id="cards" style={{maxWidth:"12rem", maxHeight:"8rem", borderRadius:"5px", backgroundColor:"rgba(40, 167, 69, 0.125)", color:"rgba(40, 167, 69, 0.6)"}}>
                         <div className="card-body">
                             <h6 className="font-weight-bold">Recovered</h6>
                             <h4 className="card-title" style={{color:"rgb(40, 167, 69)", fontWeight:"bold"}}>{recovered.toLocaleString(navigator.language)}</h4>
-                            {/* <h6 className="card-text">[+400]</h6> */}
+                            <p style={{fontWeight:"bold"}} className="card-text">[↑{todayrecov.toLocaleString(navigator.language)}]</p>
                         </div>
                     </div>
                     <div className="card mb-3 mx-auto" id="cards" style={{maxWidth:"12rem", maxHeight:"8rem", borderRadius:"5px", backgroundColor:"rgba(108, 117, 125, 0.063)", color:"rgba(108, 117, 125, 0.6)"}}>
                         <div className="card-body">
                             <h6 className="font-weight-bold">Deceased</h6>
                             <h4 className="card-title" style={{color:"rgb(108, 117, 125)", fontWeight:"bold"}}>{deceased.toLocaleString(navigator.language)}</h4>
-                            {/* <h6 className="card-text">[+100]</h6> */}
+                            <p style={{fontWeight:"bold"}} className="card-text">[↑{todaydeceased.toLocaleString(navigator.language)}]</p>
                         </div>
                     </div>
                     <div className='card-body table-responsive' style={{overflowX:"auto"}}>

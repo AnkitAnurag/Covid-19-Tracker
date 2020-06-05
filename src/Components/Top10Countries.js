@@ -2,14 +2,10 @@ import React, { useContext } from 'react';
 import { Table, Container } from 'reactstrap';
 import ThemeContext from '../Context/ThemeContext';
 import AppTheme from '../Colors';
-import ReactCountryFlag from 'react-country-flag';
 
 const Top10Countries = ({ country }) => {
   const theme = useContext(ThemeContext)[0];
   const currentTheme = AppTheme[theme];
-  const str = country[1].Date;
-  var date = str.substring(0, 10);
-  var time = str.substring(11, 19);
   var count=1;
   var toggle;
 
@@ -30,39 +26,30 @@ const Top10Countries = ({ country }) => {
                   <tr>
                     <th>#</th>
                     <th>Country</th>
-                    <th style={{ color: '#2475B0' }}>Total Confirmed</th>
-                    <th style={{ color: '#2475B0' }}>New Confirmed</th>
-                    <th style={{ color: 'red' }}>Total Deaths</th>
-                    <th style={{ color: 'red' }}>New Deaths</th>
-                    <th style={{ color: 'green' }}>Total Recovered</th>
-                    <th style={{ color: 'green' }}>New Recovered</th>
+                    <th>Confirmed</th>
+                    <th>Active</th>
+                    <th>Recovered</th>
+                    <th>Deceased</th>
                   </tr>
                 </thead>
                 <tbody>
                   {country.slice(0, 10).map((country, index) => (
-                    <tr style={{fontWeight:"bold"}} key={index}>
+                    <tr style={{fontWeight:"bold", textAlign:"left"}} key={index}>
                       <td>{count++}</td>
                       <td style={{textAlign:"left"}}>
-                        <ReactCountryFlag
-                          countryCode={country.CountryCode}
-                          svg
-                          cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
-                          cdnSuffix='svg'
-                        />
                         &nbsp;&nbsp;
-                        {country.Country}
+                        <img className="my-auto" src={country.countryInfo.flag} alt="" style={{width:"21px", height:"18px"}}/>
+                        &nbsp;&nbsp;
+                        {country.country}
                       </td>
-                      <td>{country.TotalConfirmed.toLocaleString(navigator.language)}</td>
-                      <td>{country.NewConfirmed.toLocaleString(navigator.language)}</td>
-                      <td>{country.TotalDeaths.toLocaleString(navigator.language)}</td>
-                      <td>{country.NewDeaths.toLocaleString(navigator.language)}</td>
-                      <td>{country.TotalRecovered.toLocaleString(navigator.language)}</td>
-                      <td>{country.NewRecovered.toLocaleString(navigator.language)}</td>
+                      <td>{country.cases.toLocaleString(navigator.language)} <span style={{ color: "rgb(255, 7, 58)", fontWeight:"normal", display:country.todayCases === 0 ? "none":"", fontWeight:"bold" }}> ↑{country.todayCases.toLocaleString(navigator.language)}</span></td>
+                      <td>{country.active.toLocaleString(navigator.language)}</td>
+                      <td>{country.recovered === 0 ? "N/A" : country.recovered.toLocaleString(navigator.language)}<span style={{ color: "rgb(40, 167, 69)", fontWeight:"normal", display:country.todayRecovered === 0 ? "none":"", fontWeight:"bold" }}> ↑{country.todayRecovered.toLocaleString(navigator.language)}</span></td>
+                      <td>{country.deaths.toLocaleString(navigator.language)}<span style={{ color: "rgba(108, 117, 125, 0.6)", fontWeight:"normal",display:country.todayDeaths === 0 ? "none":"", fontWeight:"bold" }}> ↑{country.todayDeaths.toLocaleString(navigator.language)}</span></td>
                     </tr>
                   ))}
                 </tbody>
               </Table>
-            <h6 style={{color:`${currentTheme.textColor}`, float:"right", fontWeight:"bold"}}>Last Updated: {date} [{time}]</h6>
             </div>
         </div>
     </Container>

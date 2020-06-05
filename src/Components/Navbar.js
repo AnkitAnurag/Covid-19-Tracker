@@ -18,12 +18,12 @@ const Navbar = ({
         else
             button="btn btn-outline-warning btn-sm mt-1";
     return(
-        <div>
-            <nav 
+        <div style={{fontFamily:"archiaregular"}}>
+            <nav
                 className="navbar navbar-expand-lg navbar-light"
                 style={{backgroundColor:`${currentTheme.backgroundColor}`}}
             >
-            <img src="https://i.ibb.co/w7rc99t/coronavirus.png" width="40" height="40" className="d-inline-block align-top"/>
+            <img src="https://i.ibb.co/KqsFzz6/virus.png" alt="" width="33" height="33" className="d-inline-block align-top"/>
             &nbsp;&nbsp;
             <Link className="navbar-brand" style={{color: `${currentTheme.textColor}`}} to="/">
                     Covid-19 Tracker
@@ -42,9 +42,6 @@ const Navbar = ({
                 <li className={india}>
                     <Link className="nav-link" style={{color: `${currentTheme.textColor}`}} to="/indiastats">India Stats</Link>
                 </li>
-                {/* <li className={about}>
-                    <Link className="nav-link" style={{color: `${currentTheme.textColor}`}} to="/about">About</Link>
-                </li> */}
                 <li className="nav-item">
                     <a className="nav-link" style={{color: `${currentTheme.textColor}`}} href="https://github.com/AnkitAnurag/Covid-19-Tracker" target="_blank">GitHub Source</a>
                 </li>

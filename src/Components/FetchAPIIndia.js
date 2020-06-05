@@ -11,6 +11,7 @@ const FetchIndiaStats = () => {
   const currentTheme = AppTheme[theme];
 
   const [stats, setStats] = useState([]);
+  const [today, setToday] = useState([]);
   const [date, setDate] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -18,12 +19,14 @@ const FetchIndiaStats = () => {
   const fetchData = async () => {
     // De-structuring the response to  { data } to get directly response.data
     const { data } = await Axios.get('https://api.rootnet.in/covid19-in/stats/latest');
-    //console.log("RESPONSE: ", data);
-    // console.log("Data: ", data.data['unofficial-summary'][0].deaths);
+    const todaydata = await Axios.get('https://corona.lmao.ninja/v2/countries?yesterday&sort');
 
+    console.log(todaydata.data[93]);
+    const tdata = todaydata.data[93];
     const stats = data.data;
     const date = data.lastRefreshed;
     setStats(stats);
+    setToday(tdata);
     setDate(date);
     setLoading(false);
   };
@@ -65,6 +68,15 @@ const FetchIndiaStats = () => {
       return b.totalConfirmed - a.totalConfirmed;
     });
 
+    var active;
+    const treated = today.todayRecovered + today.todayDeaths;
+    if(today.todayCases > treated)
+      active="↑"+(today.todayCases - treated).toLocaleString(navigator.language);
+    else if(today.todayCases - treated === 0)
+      active="↑0"
+    else
+      active="↓"+(treated - today.todayCases).toLocaleString(navigator.language);
+
     return (
       <div>
         <Helmet
@@ -73,12 +85,17 @@ const FetchIndiaStats = () => {
           }}
         />
         <IndiaCard
-          confirmed={stats['unofficial-summary'][0].total}
-          active={stats['unofficial-summary'][0].active}
-          recovered={stats['unofficial-summary'][0].recovered}
-          deceased={stats['unofficial-summary'][0].deaths}
+          confirmed={today.cases}
+          todayconf={today.todayCases}
+          active={today.active}
+          todayactive={active}
+          recovered={today.recovered}
+          todayrecov={today.todayRecovered}
+          deceased={today.deaths}
+          todaydeceased={today.todayDeaths}
           states={statesData}
           lastRefreshed={date}
+          flag={today.countryInfo.flag}
         />
         <div>
           <Footer />
